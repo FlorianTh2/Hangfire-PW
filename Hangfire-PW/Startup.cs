@@ -28,7 +28,7 @@ namespace Hangfire_PW
         {
             services.InstallMvc();
             
-            services.InstallDb();
+            services.InstallDb(Configuration);
             
             services.InstallSwagger();
             

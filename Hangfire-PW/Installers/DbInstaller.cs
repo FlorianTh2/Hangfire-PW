@@ -13,6 +13,19 @@ namespace Hangfire_PW.Installers
             //     options.UseNpgsql(ConnectionString));
             //
             // services.AddDatabaseDeveloperPageExceptionFilter();
+            
+            
+        //     services.AddIdentity<ApplicationUser, IdentityRole>()
+        //         .AddRoles<IdentityRole>()
+        //         // to make entityFramework function with identity
+        //         .AddEntityFrameworkStores<DataContext>();
+        //     
+        //
+        //     services.Configure<IdentityOptions>(options =>
+        //     {
+        //         options.Password.RequiredLength = 10;
+        //         options.Password.RequiredUniqueChars = 3;
+        //     });
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Hangfire_PW.Installers
 {
@@ -23,7 +23,7 @@ namespace Hangfire_PW.Installers
                     },
                 });
                 
-                // a.CustomSchemaIds(schemaIdStrategy);
+                a.CustomSchemaIds(schemaIdStrategy);
                 
                 a.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
@@ -52,12 +52,12 @@ namespace Hangfire_PW.Installers
             });
         }
         
-        // private static string schemaIdStrategy(Type currentClass)
-        // {
-        //     string customSuffix = "Response";
-        //     var tmpDisplayName = currentClass.ShortDisplayName().Replace("<", "").Replace(">", "");
-        //     var removedSuffix = tmpDisplayName.EndsWith(customSuffix) ? tmpDisplayName.Substring(0, tmpDisplayName.Length - customSuffix.Length) : tmpDisplayName;
-        //     return removedSuffix;
-        // }
+        private static string schemaIdStrategy(Type currentClass)
+        {
+            string customSuffix = "Response";
+            var tmpDisplayName = currentClass.ShortDisplayName().Replace("<", "").Replace(">", "");
+            var removedSuffix = tmpDisplayName.EndsWith(customSuffix) ? tmpDisplayName.Substring(0, tmpDisplayName.Length - customSuffix.Length) : tmpDisplayName;
+            return removedSuffix;
+        }
     }
 }

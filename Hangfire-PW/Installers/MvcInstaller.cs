@@ -7,6 +7,8 @@ namespace Hangfire_PW.Installers
     {
         public static void InstallMvc(this IServiceCollection services)
         {
+            services.AddControllers();
+            
             services.AddTransient<IDateTimeService, DateTimeService>();
         }
     }

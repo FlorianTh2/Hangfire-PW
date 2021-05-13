@@ -26,7 +26,7 @@ namespace Hangfire_PW
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.InstallMvc();
             
             services.InstallDb();
             

@@ -28,6 +28,8 @@ namespace Hangfire_PW
         {
             services.AddControllers();
             
+            services.InstallDb();
+            
             services.InstallSwagger();
             
             services.InstallCors();

@@ -37,7 +37,11 @@ namespace Hangfire_PW
         {
             app.UseSwagger();
             
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hangfire_PW v1"));
+            app.UseSwaggerUI(a =>
+            {
+                a.SwaggerEndpoint("/swagger/v1/swagger.json", "Hangfire_PW v1");
+                a.RoutePrefix = "swagger_hangfire";
+            });
 
             app.UseHttpsRedirection();
 

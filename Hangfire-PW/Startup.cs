@@ -43,6 +43,8 @@ namespace Hangfire_PW
             
             app.UseCors();
 
+            app.UseAuthentication();
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

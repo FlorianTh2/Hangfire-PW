@@ -29,6 +29,8 @@ namespace Hangfire_PW
             services.AddControllers();
             
             services.InstallSwagger();
+            
+            services.InstallCors();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

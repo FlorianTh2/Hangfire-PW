@@ -8,6 +8,5 @@ namespace Hangfire_PW.Installers
         {
             
         }
-
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hangfire;
 using hello_hangfire.Installers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,7 +36,7 @@ namespace hello_hangfire
             services.InstallCors();
         }
         
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IBackgroundJobClient backgroundJobs, IWebHostEnvironment env)
         {
             app.UseSwagger();
             
@@ -44,6 +45,9 @@ namespace hello_hangfire
                 a.SwaggerEndpoint("/swagger/v1/swagger.json", "Hangfire_PW v1");
                 a.RoutePrefix = "swagger_hangfire";
             });
+            
+            app.UseHangfireDashboard();
+            backgroundJobs.Enqueue(() => Console.WriteLine("Hello world from Hangfire!"));
 
             app.UseHttpsRedirection();
 
@@ -55,7 +59,11 @@ namespace hello_hangfire
             
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                // endpoints.MapHangfireDashboard();
+            });
         }
     }
 }

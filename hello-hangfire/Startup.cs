@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Hangfire_PW.Installers;
+using hello_hangfire.Installers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,7 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
-namespace Hangfire_PW
+namespace hello_hangfire
 {
     public class Startup
     {
@@ -27,8 +27,6 @@ namespace Hangfire_PW
         public void ConfigureServices(IServiceCollection services)
         {
             services.InstallMvc();
-            
-            services.InstallDb(Configuration);
             
             services.InstallSwagger();
             

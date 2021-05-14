@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
-        <RootNamespace>Hangfire_PW</RootNamespace>
+        <RootNamespace>hello-hangfire</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

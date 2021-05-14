@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Hangfire_PW.Installers
+namespace hello_hangfire.Installers
 {
     public static class CorsInstaller
     {

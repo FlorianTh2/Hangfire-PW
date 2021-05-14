@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hangfire_PW.Entities
+namespace hello_hangfire.Entities
 {
     public class AuditableEntity
     {

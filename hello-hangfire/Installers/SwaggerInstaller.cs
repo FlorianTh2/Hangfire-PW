@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-namespace Hangfire_PW.Installers
+namespace hello_hangfire.Installers
 {
     public static class SwaggerInstaller
     {

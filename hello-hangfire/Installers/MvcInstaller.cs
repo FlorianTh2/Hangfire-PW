@@ -1,7 +1,7 @@
-﻿using Hangfire_PW.Services;
+﻿using hello_hangfire.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Hangfire_PW.Installers
+namespace hello_hangfire.Installers
 {
     public static class MvcInstaller
     {

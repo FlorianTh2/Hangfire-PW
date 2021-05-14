@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Hangfire_PW.Entities
+namespace hello_hangfire.Entities
 {
     public class Project
     {

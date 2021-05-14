@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangfire-PW", "Hangfire-PW\Hangfire-PW.csproj", "{D6D561CC-ACB0-447A-8BD5-09BFB8964A7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hello-hangfire", "hello-hangfire\hello-hangfire.csproj", "{D6D561CC-ACB0-447A-8BD5-09BFB8964A7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

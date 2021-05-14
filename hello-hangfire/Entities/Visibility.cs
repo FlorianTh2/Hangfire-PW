@@ -1,4 +1,4 @@
-﻿namespace Hangfire_PW.Entities
+﻿namespace hello_hangfire.Entities
 {
     public enum Visibility
     {

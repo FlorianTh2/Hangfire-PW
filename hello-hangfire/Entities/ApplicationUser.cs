@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Hangfire_PW.Entities
+namespace hello_hangfire.Entities
 {
     public class ApplicationUser : IdentityUser
     {

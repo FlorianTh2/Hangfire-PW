@@ -28,6 +28,8 @@ namespace hello_hangfire
         {
             services.InstallMvc();
             
+            services.InstallHangfire(Configuration);
+            
             services.InstallSwagger();
             
             services.InstallCors();

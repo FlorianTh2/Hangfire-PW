@@ -2,6 +2,8 @@
 using Hangfire;
 using Hangfire.PostgreSql;
 using Hangfire.SqlServer;
+using hello_hangfire.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,12 +13,18 @@ namespace hello_hangfire.Installers
     {
         public static void InstallHangfire(this IServiceCollection services, IConfiguration Configuration)
         {
+            string connectionString = Configuration.GetConnectionString("HelloHangfireConnectionString");
+            
+            // setup separat ef-dbcontext only to create database automaticly and NOT to operate with that context at all
+            services.AddDbContext<HangfireDbContext>(options => 
+                options.UseNpgsql(connectionString));
+            
             // Add Hangfire services.
             services.AddHangfire(config => config
                 .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
                 .UseSimpleAssemblyNameTypeSerializer()
                 .UseRecommendedSerializerSettings()
-                .UsePostgreSqlStorage(Configuration.GetConnectionString("HelloHangfireConnectionString"),
+                .UsePostgreSqlStorage(connectionString,
                     new PostgreSqlStorageOptions()
                     {
                         QueuePollInterval = TimeSpan.FromSeconds(15.0),
@@ -28,6 +36,8 @@ namespace hello_hangfire.Installers
                         PrepareSchemaIfNecessary = true,
                     })
             );
+            
+            
 
             // Add the processing server as IHostedService
             services.AddHangfireServer(options =>

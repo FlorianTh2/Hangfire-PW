@@ -46,6 +46,7 @@ namespace hello_hangfire
                 a.RoutePrefix = "swagger_hangfire";
             });
             
+            // localhost/hangfire
             app.UseHangfireDashboard();
             backgroundJobs.Enqueue(() => Console.WriteLine("Hello world from Hangfire!"));
 

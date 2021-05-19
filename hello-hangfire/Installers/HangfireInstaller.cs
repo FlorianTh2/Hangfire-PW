@@ -31,7 +31,6 @@ namespace hello_hangfire.Installers
                         InvisibilityTimeout = TimeSpan.FromMinutes(30.0),
                         DistributedLockTimeout = TimeSpan.FromMinutes(10.0),
                         TransactionSynchronisationTimeout = TimeSpan.FromMilliseconds(500.0),
-                        SchemaName = "hangfire",
                         UseNativeDatabaseTransactions = true,
                         PrepareSchemaIfNecessary = true,
                     })

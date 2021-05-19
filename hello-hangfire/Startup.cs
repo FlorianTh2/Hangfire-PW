@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Hangfire;
+using Hangfire.Dashboard;
 using hello_hangfire.Filter;
 using hello_hangfire.Installers;
+using hello_hangfire.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -48,9 +50,12 @@ namespace hello_hangfire
             });
 
             // localhost/hangfire
+            // if disabling maybe hangfire will not work since no activity
+            // see https://stackoverflow.com/questions/44073911/hangfire-does-not-process-recurring-jobs-unless-dashboard-is-open
             app.UseHangfireDashboard("/hangfire", new DashboardOptions
             {
-                Authorization = new[] {new HangfireAuthorizationFilter()}
+                IsReadOnlyFunc = (DashboardContext context) => true
+                // Authorization = new[] {new HangfireAuthorizationFilter()}
             });
 
             // backgroundJobs
@@ -58,9 +63,9 @@ namespace hello_hangfire
             // https://stackoverflow.com/questions/53515314/what-is-an-correct-way-to-inject-db-context-to-hangfire-recurring-job
             // https://docs.hangfire.io/en/latest/background-methods/index.html
             // BackgroundJob.Enqueue<IEmailSender>(x => x.Send("hangfire@example.com"));
-            hangfireClient.Enqueue(() => Console.WriteLine("Hello world from Hangfire!"));
+            // hangfireClient.Enqueue(() => Console.WriteLine("Hello world from Hangfire!"));
 
-            // RecurringJob.AddOrUpdate(() => new MessageService(context).Send(), Cron.Daily);
+            RecurringJob.AddOrUpdate<MessageService>(a => a.Send(), Cron.Minutely);
 
 
             app.UseHttpsRedirection();

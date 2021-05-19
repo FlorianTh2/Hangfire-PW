@@ -2,7 +2,7 @@
 
 namespace hello_hangfire.Services
 {
-    public class MessageService
+    public class MessageService : IMessageService
     {
         private readonly IDateTimeService _dateTimeService;
 
@@ -11,9 +11,14 @@ namespace hello_hangfire.Services
             _dateTimeService = dateTimeService;
         }
 
+        ~MessageService()
+        {
+            Console.WriteLine("message service got destroyed");
+        }
+
         public void Send()
         {
-            Console.Write("hello hangfire");
+            Console.WriteLine("hello hangfire");
         }
     }
 }

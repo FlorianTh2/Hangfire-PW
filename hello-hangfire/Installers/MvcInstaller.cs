@@ -10,6 +10,8 @@ namespace hello_hangfire.Installers
             services.AddControllers();
             
             services.AddTransient<IDateTimeService, DateTimeService>();
+
+            services.AddScoped<IMessageService, MessageService>();
         }
     }
 }

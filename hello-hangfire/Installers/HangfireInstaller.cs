@@ -30,7 +30,10 @@ namespace hello_hangfire.Installers
             );
 
             // Add the processing server as IHostedService
-            services.AddHangfireServer();
+            services.AddHangfireServer(options =>
+            {
+                options.HeartbeatInterval =TimeSpan.FromSeconds(30.0);
+            });
         }
     }
 }

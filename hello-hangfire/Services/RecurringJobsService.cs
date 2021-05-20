@@ -61,6 +61,7 @@ namespace hello_hangfire.Services
 
         private void AddStartingMessageJob()
         {
+            // _backgroundJobs.Enqueue(() => Console.WriteLine("test"));
             _backgroundJobs.Enqueue<MessageService>(a => a.Send());
         }
         public void AddHelloSecondsJobs()

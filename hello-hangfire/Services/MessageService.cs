@@ -10,15 +10,10 @@ namespace hello_hangfire.Services
         {
             _dateTimeService = dateTimeService;
         }
-
-        ~MessageService()
-        {
-            Console.WriteLine("message service got destroyed");
-        }
-
+        
         public void Send()
         {
-            Console.WriteLine("hello hangfire");
+            Console.WriteLine("hello hangfire with timestamp: " + _dateTimeService.Now);
         }
     }
 }

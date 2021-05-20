@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Hangfire;
+using Hangfire.Client;
+using Hangfire.Common;
 using Hangfire.Dashboard;
+using Hangfire.Server;
+using Hangfire.States;
 using hello_hangfire.Filter;
 using hello_hangfire.Installers;
 using hello_hangfire.Services;
@@ -13,6 +17,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
@@ -37,6 +42,8 @@ namespace hello_hangfire
             services.InstallSwagger();
 
             services.InstallCors();
+            
+            services.AddHostedService<RecurringJobsService>();
         }
 
         public void Configure(IApplicationBuilder app, IBackgroundJobClient hangfireClient, IWebHostEnvironment env)
@@ -57,16 +64,6 @@ namespace hello_hangfire
                 IsReadOnlyFunc = (DashboardContext context) => true
                 // Authorization = new[] {new HangfireAuthorizationFilter()}
             });
-
-            // backgroundJobs
-            // https://github.com/HangfireIO/Hangfire/blob/master/samples/NetCoreSample/Program.cs
-            // https://stackoverflow.com/questions/53515314/what-is-an-correct-way-to-inject-db-context-to-hangfire-recurring-job
-            // https://docs.hangfire.io/en/latest/background-methods/index.html
-            // BackgroundJob.Enqueue<IEmailSender>(x => x.Send("hangfire@example.com"));
-            // hangfireClient.Enqueue(() => Console.WriteLine("Hello world from Hangfire!"));
-
-            RecurringJob.AddOrUpdate<MessageService>(a => a.Send(), Cron.Minutely);
-
 
             app.UseHttpsRedirection();
 
